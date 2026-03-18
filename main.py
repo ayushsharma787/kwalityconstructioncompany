@@ -97,8 +97,12 @@ with tab_exec:
             colorscale=[[0, "#fecaca"], [0.5, "#fef9c3"], [1, "#bbf7d0"]],
             text=[[fmt(v) for v in FY1_NET]], texttemplate="%{text}", textfont_size=10,
         ))
-        fig.update_layout(**PLOTLY_LAYOUT, height=120, margin=dict(l=40, r=10, t=10, b=30),
-            yaxis=dict(visible=False))
+        fig.update_layout(**{
+            **PLOTLY_LAYOUT,
+            "height": 120,
+            "margin": dict(l=40, r=10, t=10, b=30),
+            "yaxis": dict(visible=False),
+        })
         st.plotly_chart(fig, use_container_width=True)
         
         loss_months = sum(1 for v in FY1_NET if v < 0)
